@@ -16,11 +16,6 @@ EventNoop::EventNoop(int motorNum) {
 }
 
 /**
- * Default Destructor
- */
-EventNoop::~EventNoop() {}
-
-/**
  * Function for returning the command associated with
  * this event.
  */

@@ -16,11 +16,6 @@ EventExit::EventExit(int motorNum) {
 }
 
 /**
- * Default Destructor
- */
-EventExit::~EventExit() {}
-
-/**
  * Function for returning the command associated with
  * this event.
  */

@@ -12,6 +12,8 @@
 class EventError : public Event{
 public:
 	EventError(int);
+	char getMessage();
+	int getMotor();
 };
 
 #endif /* EVENTERROR_H_ */

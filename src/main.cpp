@@ -16,7 +16,6 @@
 #include <queue>
 #include "Keyboard.h"
 #include "EventQueue.h"
-#include "Motor.h"
 #include "StateMachine.h"
 #define CYCLES 3
 #define NUM_THREADS 5
@@ -66,8 +65,8 @@ int main( int argc, char *argv[]){
    
 	EventQueue myQueue = EventQueue();
 	Keyboard keys = Keyboard(&myQueue);
-    Motor myMotor = Motor(&myQueue);
-    StateMachine rageAgainst = StateMachine(&myQueue, &myMotor);
+   // Motor myMotor = Motor(&myQueue);
+    StateMachine rageAgainst = StateMachine(&myQueue);
     int x = 0;
     while(true){
         x++;

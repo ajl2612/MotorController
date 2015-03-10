@@ -12,6 +12,8 @@
 class EventNoop : public Event {
 public:
 	EventNoop(int);
+	char getMessage();
+	int getMotor();
 };
 
 #endif /* EVENTNOOP_H_ */

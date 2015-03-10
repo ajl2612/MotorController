@@ -12,6 +12,8 @@
 class EventRestart : public Event {
 public:
 	EventRestart(int);
+	char getMessage();
+	int getMotor();
 };
 
 #endif /* EVENTRESTART_H_ */

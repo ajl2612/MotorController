@@ -12,6 +12,8 @@
 class EventMoveRight : public Event {
 public:
 	EventMoveRight(int);
+	char getMessage();
+	int getMotor();
 };
 
 #endif /* EVENTMOVERIGHT_H_ */

@@ -16,11 +16,6 @@ EventRestart::EventRestart(int motorNum) {
 }
 
 /**
- * Default Destructor
- */
-EventRestart::~EventRestart() {}
-
-/**
  * Function for returning the command associated with
  * this event.
  */

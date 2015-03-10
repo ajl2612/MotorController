@@ -9,8 +9,10 @@
 #ifndef __StateMachine__Event__
 #define __StateMachine__Event__
 
+
 #include <iostream>
 #include <string>
+
 
 
 class Event{

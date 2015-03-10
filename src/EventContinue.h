@@ -12,6 +12,8 @@
 class EventContinue : public Event{
 public:
 	EventContinue(int);
+	char getMessage();
+	int getMotor();
 };
 
 #endif /* EVENTCONTINUE_H_ */

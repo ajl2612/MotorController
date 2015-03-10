@@ -8,10 +8,6 @@
 
 #include "State.h"
 
-std::string State::getName(){
-    return name;
-}
-
 int State::getID(){
     return stateID;
 }

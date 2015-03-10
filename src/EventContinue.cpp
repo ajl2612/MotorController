@@ -16,11 +16,6 @@ EventContinue::EventContinue(int motorNum) {
 }
 
 /**
- * Default Destructor
- */
-EventContinue::~EventContinue() {}
-
-/**
  * Function for returning the command associated with
  * this event.
  */

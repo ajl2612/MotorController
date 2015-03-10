@@ -12,6 +12,8 @@
 class EventPause : public Event{
 public:
     EventPause(int);
+	char getMessage();
+	int getMotor();
 };
 
 #endif /* EVENTPAUSE_H_ */

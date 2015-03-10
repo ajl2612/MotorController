@@ -8,7 +8,7 @@
 #ifndef STATEERROR_H_
 #define STATEERROR_H_
 
-class StateError {
+class StateError : public State{
 public:
 	StateError();
 	virtual ~StateError();

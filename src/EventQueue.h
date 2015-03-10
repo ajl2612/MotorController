@@ -10,19 +10,22 @@
 #define __StateMachine__EventQueue__
 
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <queue>
 #include "mutex.h"
+#include "Event.h"
 
 class EventQueue{
     
 private:
-    std::queue<char> cmdQueue;
+    std::queue<Event*> eventQueue;
     PThreads::Mutex mtx;
     
 public:
     EventQueue();
-    void enterCMD(char cmd);
-    char frontCMD();
+    void enterCMD(Event* e);
+    Event* frontCMD();
     void popCMD();
     bool empty();
 

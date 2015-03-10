@@ -16,11 +16,6 @@ EventMoveLeft::EventMoveLeft(int motorNum) {
 }
 
 /**
- * Default Destructor
- */
-EventMoveLeft::~EventMoveLeft() {}
-
-/**
  * Function for returning the command associated with
  * this event.
  */

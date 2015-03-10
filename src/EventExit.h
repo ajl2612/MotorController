@@ -12,6 +12,8 @@
 class EventExit : public Event{
 public:
 	EventExit(int);
+	char getMessage();
+	int getMotor();
 };
 
 #endif /* EVENTEXIT_H_ */

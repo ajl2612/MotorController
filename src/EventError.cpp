@@ -16,11 +16,6 @@ EventError::EventError(int motorNum) {
 }
 
 /**
- * Default Destructor
- */
-EventError::~EventError() {}
-
-/**
  * Function for returning the command associated with
  * this event.
  */

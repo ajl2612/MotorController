@@ -32,7 +32,7 @@ protected:
     
 public:
     int NOP();
-    std::string getName();
+
     int getID();
 
     virtual int transition( char event_id ) = 0;

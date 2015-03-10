@@ -8,31 +8,26 @@
 
 #include "EventQueue.h"
 
-
-EventQueue::EventQueue(){
-
-}
-
-void EventQueue::enterCMD(char cmd){
-    printf("EventQueue recieved new command ... %c.\n", cmd);
+void EventQueue::enterCMD(Event* e){
+    printf("EventQueue received new event ... %c.\n", e->getMessage());
     //this->mtx.lock();
-    this -> cmdQueue.push(cmd);
+    this -> eventQueue.push(e);
     //this->mtx.unlock();
     
 }
 
-char EventQueue::frontCMD(){
+Event* EventQueue::frontCMD(){
     //this->mtx.lock();
-    return this->cmdQueue.front();
+    return this->eventQueue.front();
     //this->mtx.unlock();
 }
 
 void EventQueue::popCMD(){
     //this->mtx.lock();
-    this->cmdQueue.pop();
+    this->eventQueue.pop();
     //this->mtx.unlock();
 }
 
 bool EventQueue::empty(){
-    return cmdQueue.empty();
+    return eventQueue.empty();
 }

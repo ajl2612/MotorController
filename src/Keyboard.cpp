@@ -21,8 +21,36 @@ Keyboard::Keyboard( EventQueue *queue ){
     pthread_create(&monitor, NULL, &monitorHelper, this);
 }
 
-void Keyboard::sendCMD(char c){
-    this->myQueue->enterCMD(c);
+void Keyboard::sendCMD(char cmd, int machine){
+	switch(cmd){
+		case EVENT_PAUSE:
+		    this->myQueue->enterCMD(new EventPause(machine));
+	        break;
+	    case EVENT_CONTINUE:
+	    	this->myQueue->enterCMD(new EventContinue(machine));
+	    	break;
+	    case EVENT_MOVELEFT:
+	    	this->myQueue->enterCMD(new EventMoveLeft(machine));
+	    	break;
+	    case EVENT_MOVERIGHT:
+	    	this->myQueue->enterCMD(new EventMoveRight(machine));
+	    	break;
+	    case EVENT_NOOP:
+	    	this->myQueue->enterCMD(new EventNoop(machine));
+	    	break;
+	    case EVENT_RESTART:
+	    	this->myQueue->enterCMD(new EventRestart(machine));
+	    	break;
+	    case EVENT_ERROR:
+	    	this->myQueue->enterCMD(new EventError(machine));
+	    	break;
+	    case EVENT_EXIT:
+	    	this->myQueue->enterCMD(new EventExit(machine));
+	    	break;
+	    default:
+	    	printf("Command not recognized command : %c\n",cmd);
+	    	break;
+		}
 }
 
 void* keyBoardHelper(void* args){
@@ -43,7 +71,8 @@ void* Keyboard::runProcess(void* args){
 	        if(newCmds){
 	            mtx.lock();
 	           // printf( "NEW COMMANDS !!!!\n");
-	            sendCMD(command);
+	            sendCMD(commandOne, 0);
+	            sendCMD(commandTwo, 1);
 	            newCmds = false;
 	            mtx.unlock();
 	        }
@@ -63,16 +92,73 @@ void* Keyboard::monitorBlocking(void* args){
 	       // printf("waiting...\n");
 	        getline(std::cin, input);
 	       //std::printf( "got something...%s\n", input.c_str());
-            command = input[0];
-            if(command == 'p' || command == 'm' || command == 'i' || command == 'q'){
-                mtx.lock();
-                newCmds = true;
-                mtx.unlock();
-                if(input.compare("q" )== 0) {
-                    done = true;
-                }
-            }else{
-                printf("Invalid command %c\n", command);
+            char first = input[0];
+            char second = input[1];
+            mtx.lock();
+            switch(first){
+            	case EVENT_PAUSE:
+            		commandOne = EVENT_PAUSE;
+            		break;
+            	case EVENT_CONTINUE:
+            		commandOne = EVENT_CONTINUE;
+            		break;
+            	case EVENT_MOVELEFT:
+            		commandOne = EVENT_MOVELEFT;
+            		break;
+            	case EVENT_MOVERIGHT:
+            		commandOne = EVENT_MOVERIGHT;
+            		break;
+            	case EVENT_NOOP:
+            		commandOne = EVENT_NOOP;
+            		break;
+            	case EVENT_RESTART:
+            		commandOne = EVENT_RESTART;
+            		break;
+            	case EVENT_ERROR:
+            		commandOne = EVENT_ERROR;
+            		break;
+            	case EVENT_EXIT:
+            		commandOne = EVENT_EXIT;
+            		break;
+            	default:
+            		printf("Invalid first command : %c\n",first);
+            		commandOne = EVENT_ERROR;
+            		break;
+            }
+            switch(second){
+            	case EVENT_PAUSE:
+            		commandTwo = EVENT_PAUSE;
+            		break;
+            	case EVENT_CONTINUE:
+            		commandTwo = EVENT_CONTINUE;
+            		break;
+            	case EVENT_MOVELEFT:
+            		commandTwo = EVENT_MOVELEFT;
+            		break;
+            	case EVENT_MOVERIGHT:
+            		commandTwo = EVENT_MOVERIGHT;
+            		break;
+            	case EVENT_NOOP:
+            		commandTwo = EVENT_NOOP;
+            		break;
+            	case EVENT_RESTART:
+            		commandTwo = EVENT_RESTART;
+            		break;
+            	case EVENT_ERROR:
+            		commandTwo = EVENT_ERROR;
+            		break;
+            	case EVENT_EXIT:
+            		commandTwo = EVENT_EXIT;
+            		break;
+            	default:
+            		printf("Invalid second command : %c\n",second);
+            		commandTwo = EVENT_ERROR;
+            		break;
+            }
+            newCmds = true;
+            mtx.unlock();
+            if(first == 'q' || second == 'q') {
+            	done = true;
             }
 	    }
 

@@ -11,12 +11,19 @@
 
 #include <iostream>
 #include "EventGenerator.h"
+#include "EventPause.h"
+#include "EventContinue.h"
+#include "EventMoveLeft.h"
+#include "EventMoveRight.h"
+#include "EventNoop.h"
+#include "EventRestart.h"
+#include "EventError.h"
+#include "EventExit.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
 #include <string>
-#include <iostream>
 #include "mutex.h"
 #include <queue>
 
@@ -25,7 +32,8 @@ class Keyboard: public EventGenerator{
 private:
     
     EventQueue* myQueue;
-	char command;
+	char commandOne;
+	char commandTwo;
 	bool newCmds;
 	bool alreadyRead;
 	bool done;
@@ -34,10 +42,7 @@ private:
 	pthread_t keyboard;
 	pthread_t monitor;
 
-    void sendCMD(char c);
-    void riasePushButtonEvent();
-    void raiseSystemExitEvent();
-    void raiseIREvent();
+    void sendCMD(char cmd, int machine);
     
 public:
     Keyboard( EventQueue* queue);
