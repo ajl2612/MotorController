@@ -29,20 +29,20 @@ void* StateMachine::runProcess(void){
             machine = e->getMotor();
             printf("In queue........command = %c\n", e->getMessage());
 
-            if( e.getMessage() == 'q'){
+            if( e->getMessage() == 'q'){
                 printf("Termination signal received at State Machine\n");
                 done = true;
             }else{
                 last_state[machine] = current_state[machine];
 
-                current_state[machine] = states[machine][current_state]->transition(e->getMessage());
+                current_state[machine] = states[machine][current_state[machine]]->transition(e->getMessage());
                 if(current_state[machine] == last_state[machine]){
                     //state has transitioned to itself
-                    states[machine][current_state] -> onReEntry();
+                    states[machine][current_state[machine]] -> onReEntry();
                 }
                 else{
-                    states[machine][last_state] -> onExit();
-                    states[machine][current_state] -> onEntry();
+                    states[machine][last_state[machine]] -> onExit();
+                    states[machine][current_state[machine]] -> onEntry();
                 }
                 printf("System %d now in state #%d\n", machine, current_state[machine]);
             }
@@ -61,10 +61,6 @@ void* StateMachine::runProcess(void){
 StateMachine::StateMachine(EventQueue* queue) {
     this -> done  = false;
     this -> myQueue = queue;
-    this -> current_state = STATE_CLOSEDDOOR;
-    this -> last_state = STATE_CLOSEDDOOR;
-    
-    this -> myMotor =  m;
     
     //create states
     this->s00 = StateStart();

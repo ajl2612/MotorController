@@ -24,7 +24,6 @@ CPP_SRCS += \
 ../src/StatePaused.cpp \
 ../src/StateRunning.cpp \
 ../src/StateStart.cpp \
-../src/main.cpp \
 ../src/mutex.cpp \
 ../src/thread.cpp 
 
@@ -49,7 +48,6 @@ OBJS += \
 ./src/StatePaused.o \
 ./src/StateRunning.o \
 ./src/StateStart.o \
-./src/main.o \
 ./src/mutex.o \
 ./src/thread.o 
 
@@ -74,7 +72,6 @@ CPP_DEPS += \
 ./src/StatePaused.d \
 ./src/StateRunning.d \
 ./src/StateStart.d \
-./src/main.d \
 ./src/mutex.d \
 ./src/thread.d 
 

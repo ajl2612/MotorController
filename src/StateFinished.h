@@ -8,10 +8,15 @@
 #ifndef STATEFINISHED_H_
 #define STATEFINISHED_H_
 
-class StateFinished {
+#include "State.h"
+class StateFinished : public State{
 public:
 	StateFinished();
-	virtual ~StateFinished();
+	~StateFinished();
+    int transition( char event_id );
+    void onEntry();
+    void onReEntry();
+    void onExit();
 };
 
 #endif /* STATEFINISHED_H_ */

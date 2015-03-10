@@ -8,10 +8,15 @@
 #ifndef STATEERROR_H_
 #define STATEERROR_H_
 
+#include "State.h"
 class StateError : public State{
 public:
 	StateError();
-	virtual ~StateError();
+	~StateError();
+    int transition( char event_id );
+    void onEntry();
+    void onReEntry();
+    void onExit();
 };
 
 #endif /* STATEERROR_H_ */

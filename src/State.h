@@ -25,6 +25,8 @@
 #define EVENT_EXIT 'q'
 
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 
 class State{
 protected:
@@ -32,9 +34,7 @@ protected:
     
 public:
     int NOP();
-
     int getID();
-
     virtual int transition( char event_id ) = 0;
     virtual void onEntry() = 0;
     virtual void onReEntry() = 0;

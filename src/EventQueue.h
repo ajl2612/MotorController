@@ -23,7 +23,8 @@ private:
     PThreads::Mutex mtx;
     
 public:
-    EventQueue();
+    //EventQueue();
+    //~EventQueue();
     void enterCMD(Event* e);
     Event* frontCMD();
     void popCMD();

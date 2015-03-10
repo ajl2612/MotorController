@@ -22,6 +22,7 @@ Keyboard::Keyboard( EventQueue *queue ){
 }
 
 void Keyboard::sendCMD(char cmd, int machine){
+	printf("SENDING NEW COMMAND\n");
 	switch(cmd){
 		case EVENT_PAUSE:
 		    this->myQueue->enterCMD(new EventPause(machine));
@@ -66,11 +67,11 @@ void* Keyboard::runProcess(void* args){
 
 	    std::string input = "";
 	    while(!done){
-	        //printf("In loop....\n");
+	        printf("In loop....\n");
 	        sleep(2);
 	        if(newCmds){
 	            mtx.lock();
-	           // printf( "NEW COMMANDS !!!!\n");
+	            printf( "NEW COMMANDS !!!!\n");
 	            sendCMD(commandOne, 0);
 	            sendCMD(commandTwo, 1);
 	            newCmds = false;
@@ -85,13 +86,13 @@ void* Keyboard::runProcess(void* args){
 
 void* Keyboard::monitorBlocking(void* args){
 
-	//printf("Begin scanning for user input\n");
+		printf("Begin scanning for user input\n");
 
 	    std::string input = "";
 	    while( !done ){
-	       // printf("waiting...\n");
+	       printf("waiting...\n");
 	        getline(std::cin, input);
-	       //std::printf( "got something...%s\n", input.c_str());
+	        printf( "got something...%s\n", input.c_str());
             char first = input[0];
             char second = input[1];
             mtx.lock();

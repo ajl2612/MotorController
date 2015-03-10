@@ -8,10 +8,15 @@
 #ifndef STATERUNNING_H_
 #define STATERUNNING_H_
 
-class StateRunning {
+#include "State.h"
+class StateRunning : public State {
 public:
 	StateRunning();
-	virtual ~StateRunning();
+	~StateRunning();
+    int transition( char event_id );
+    void onEntry();
+    void onReEntry();
+    void onExit();
 };
 
 #endif /* STATERUNNING_H_ */

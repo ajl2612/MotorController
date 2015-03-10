@@ -16,6 +16,7 @@
 #include <queue>
 #include "Keyboard.h"
 #include "EventQueue.h"
+//#include "EventQueue.cpp"
 #include "StateMachine.h"
 #define CYCLES 3
 #define NUM_THREADS 5
@@ -32,9 +33,9 @@ bool done = false;
 
 PThreads::Mutex mtx;
 
-
+/**
 void* threadIO (void* arg){
-/*
+
     printf("Begin scanning for user input\n");
 
     std::string input = "";
@@ -57,9 +58,10 @@ void* threadIO (void* arg){
     }
 
     printf("Terminating scanning for user input\n");
-    */
+
     return NULL;
 }
+**/
 
 int main( int argc, char *argv[]){
 

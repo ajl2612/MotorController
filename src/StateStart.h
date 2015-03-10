@@ -14,12 +14,11 @@
 class StateStart : public State {
 public:
 	StateStart();
-	virtual ~StateStart();
-
+	~StateStart();
+    int transition( char event_id );
     void onEntry();
     void onReEntry();
     void onExit();
-    int transition(char event_id);
 };
 
 #endif /* STATESTART_H_ */
